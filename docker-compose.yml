@@ -3,11 +3,11 @@ services:
   api:
       build: ./api
       container_name: api
-      command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; uvicorn main:app --host 0.0.0.0 --port 8080'
+      command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; uvicorn main:app --host 0.0.0.0 --port 8000'
       depends_on:
         - postgres
       ports:
-          - 8080:8080
+          - 8000:8000
       env_file:
         - .env
   bot:
@@ -17,29 +17,19 @@ services:
       depends_on:
         - postgres
       expose:
-        - 8000
+        - 8081
       env_file:
         - .env
   web:
+      stdin_open: true
       build: ./frontend
+      restart: always
       container_name: web
-      ports:
-        - 3000:3000
-      depends_on:
-        - api
-  nginx:
-      build: ./nginx
       ports:
         - 80:80
         - 443:443
-      volumes:
-        - ./frontend/build:/usr/share/nginx/html
-        - ./certs:/etc/ssl/certs
-        - ./private:/etc/ssl/private
-        - ./build:/usr/share/nginx/html
       depends_on:
         - api
-        - web
   postgres:
       image: postgres:15-alpine
       container_name: postgres
