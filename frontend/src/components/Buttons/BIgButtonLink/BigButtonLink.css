@@ -1,0 +1,21 @@
+.BigButtonLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 47px;
+  border-radius: 9px;
+  margin-top: auto;
+  margin-bottom: 15px;
+  background-color: #1a73d0;
+  text-decoration: none;
+}
+
+.BigButtonLinkCaption {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+}

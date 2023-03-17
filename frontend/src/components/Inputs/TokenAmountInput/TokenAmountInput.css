@@ -1,0 +1,59 @@
+.TokenAmountInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.amount-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid;
+  border-color: #ddd;
+  border-radius: 18px;
+  align-items: center;
+}
+
+
+.amount-input {
+  border-radius: 18px;
+  outline: none;
+  flex: 1;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 14px 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input-error {
+  padding-top: 5px;
+  color: #f4521e;
+}
+
+.max-amount-button {
+  color: #fff;
+  background: #1a73d0;
+  border-radius: 7px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  padding: 5px 10px;
+  margin-right: 10px;
+}

@@ -1,0 +1,44 @@
+.Token {
+  display: flex;
+  flex-direction: row;
+  font-family: "Inter";
+  font-style: normal;
+  color: #202129;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.tokenImage{
+  width: 43px;
+  height: 43px;
+}
+
+.tokenInfo {
+  display: flex;
+  border-bottom: 1px solid #e6e6e6;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tokenRate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 3px;
+}
+
+.tokenTotal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  color: #686a73;
+}
+
+.tokenPrice {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #686a73;
+}

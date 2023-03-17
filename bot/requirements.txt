@@ -1,0 +1,8 @@
+aiogram==2.24
+SQLAlchemy==1.4.46
+asyncpg
+environs
+captcha
+greenlet
+httpx
+tonsdk

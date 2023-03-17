@@ -1,0 +1,8 @@
+wheel
+fastapi
+uvicorn
+asyncpg
+tortoise-orm
+environs
+httpx
+tonsdk

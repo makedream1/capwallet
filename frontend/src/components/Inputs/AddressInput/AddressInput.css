@@ -1,0 +1,30 @@
+
+.AddressInput-wrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+}
+
+.AddressInput-input {
+  border-radius: 18px;
+  outline: none;
+  flex: 1;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.AddressInput-button,
+.AddressInput-input {
+  padding: 14px 15px;
+}
+
+.AddressInput-error {
+  display: none;
+}

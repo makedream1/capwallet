@@ -1,0 +1,48 @@
+.token-select-label {
+  display: flex;
+  padding: 15px 0;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #202129;
+}
+
+.token-select-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.token-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #202129;
+}
+.token-image {
+  width: 23px;
+  height: 23px;
+}
+
+.token-amount-shortName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 18px;
+  color: #202129;
+}

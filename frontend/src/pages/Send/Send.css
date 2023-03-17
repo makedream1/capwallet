@@ -1,0 +1,76 @@
+.Send {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 26px 26px 0 0;
+  padding: 20px 16px 10px 16px;
+  background-color: #fff;
+  margin-top: auto;
+}
+
+.send-address-container,
+.send-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.send-title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #202129;
+}
+
+.send-subtitle-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #686a73;
+}
+
+.send-confirm-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.confirm-send {
+  gap: 25px;
+}
+.send-confirm-address-wrapper{
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.send-confirm-address {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #00000038;
+  height: 30px;
+  align-items: center;
+  padding: 4px;
+  border-radius: 10px;
+  font-family: 'Inter';
+  font-weight: 300;
+  font-size: 14px;
+}

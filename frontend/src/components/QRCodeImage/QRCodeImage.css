@@ -1,0 +1,22 @@
+.qrCode-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qrCode-title-container {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.qrCode-container{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+}

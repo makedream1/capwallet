@@ -1,0 +1,6 @@
+.Button-Back {
+    background-image: url(./arrow.png);
+    width: 24px;
+    height: 24px;
+    display: flex;
+}
