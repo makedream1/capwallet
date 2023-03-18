@@ -29,7 +29,7 @@ async def ton_deposit_watcher(config, session):
                 tx_comment = None
                 uid = None
                 tx_body_hash = tx['in_msg']['body_hash']
-
+                tx_hash = tx['transaction_id']['hash']
                 if tx['in_msg']['msg_data'].get('text'):
                     decoded_msg = decode(tx['in_msg']['message'])
                     if decoded_msg:
@@ -40,7 +40,7 @@ async def ton_deposit_watcher(config, session):
                         except Exception:
                             pass
 
-                exist_tx = await db.check_transaction(tx_body_hash, tx['transaction_id'])
+                exist_tx = await db.check_transaction(tx_body_hash, tx_hash)
                 if not exist_tx:
                     wallet = await db.check_wallet(tx['in_msg']['source'])
                     if wallet and uid is not None:
@@ -48,7 +48,7 @@ async def ton_deposit_watcher(config, session):
                         tx_time = datetime.fromtimestamp(tx['utime'])
                         add_tx = await db.add_v_transaction(
                             hash=tx_body_hash,
-                            tx_hash=tx['transaction_id'],
+                            tx_hash=tx_hash,
                             destination=tx['in_msg']['destination'],
                             incoming_value=val,
                             wallet_id=tx['in_msg']['source'],
@@ -120,7 +120,7 @@ async def ton_withdraw_watcher(config, session):
                 for out_msg in tx['out_msgs']:
                     tx_comment = None
                     tx_body_hash = out_msg['body_hash']
-
+                    tx_hash = tx['transaction_id']['hash']
                     uid = None
                     if out_msg['msg_data'].get('text'):
                         decoded_msg = decode(out_msg['message'])
@@ -133,7 +133,7 @@ async def ton_withdraw_watcher(config, session):
                             except Exception:
                                 pass
 
-                    exist_tx = await db.check_transaction(tx_body_hash, tx['transaction_id'])
+                    exist_tx = await db.check_transaction(tx_body_hash, tx_hash)
 
                     if not exist_tx and tx_comment is not None:
                         wallet = await db.check_wallet(tx_comment[0])
@@ -142,7 +142,7 @@ async def ton_withdraw_watcher(config, session):
                             val = int(out_msg['value'])
                             tx_time = datetime.fromtimestamp(tx['utime'])
                             await db.add_v_transaction(
-                                tx_hash=tx['transaction_id'],
+                                tx_hash=tx_hash,
                                 hash=tx_body_hash,
                                 incoming_value=-val,
                                 wallet_id=source,
