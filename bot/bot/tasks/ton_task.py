@@ -96,7 +96,7 @@ async def ton_deposit_watcher(config, session):
                                              payload=encoded_msg)
                     continue
 
-        await asyncio.sleep(50)
+        await asyncio.sleep(10)
 
 
 async def ton_withdraw_watcher(config, session):
