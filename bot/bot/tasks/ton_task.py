@@ -1,6 +1,5 @@
 import asyncio
 from datetime import datetime
-from pprint import pprint
 
 from bot.db.requests import DbRequests, Wallet
 from providers.ton_provider import TON_Provider
@@ -25,7 +24,6 @@ async def ton_deposit_watcher(config, session):
             coin_name='TON')
 
         transactions = await provider.get_transactions_info(HOT_WALLET, limit=5)
-        pprint(transactions)
         for tx in transactions:
             if not tx['out_msgs']:
                 tx_comment = None
@@ -43,8 +41,6 @@ async def ton_deposit_watcher(config, session):
                             pass
 
                 exist_tx = await db.check_transaction(tx_body_hash)
-                print('exist_tx', exist_tx)
-                print('tx_body_hash', tx_body_hash)
                 if not exist_tx:
                     wallet = await db.check_wallet(tx['in_msg']['source'])
                     if wallet and uid is not None:
