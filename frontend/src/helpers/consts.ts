@@ -1,3 +1,3 @@
-const HOST = 'http://api:8080'
+const HOST = 'https://volreviews.com'
 
 export const URL = `${HOST}/api/v1`;
