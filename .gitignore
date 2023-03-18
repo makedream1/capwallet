@@ -23,3 +23,6 @@ yarn-error.log*
 .env
 .venv
 __pycache__
+
+fullchain.pem
+privkey.pem
