@@ -56,7 +56,8 @@ class Coin(BaseModel):
 class Transactions(BaseModel):
     __tablename__ = 'Transactions'
 
-    hash = Column(String, primary_key=True, unique=True, nullable=False)
+    tx_hash = Column(String, primary_key=True, unique=True, nullable=False)
+    hash = Column(String, nullable=False)
     destination_address = Column(String, nullable=False)
     wallet_id = Column(String, ForeignKey("Wallet.address"))
     user_id = Column(BigInteger, ForeignKey("User.id"))

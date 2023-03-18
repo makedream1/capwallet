@@ -130,7 +130,8 @@ class Transactions(models.Model):
     The Transactions model
     """
 
-    hash = fields.CharField(pk=True, max_length=80, null=False, unique=True)
+    tx_hash = fields.CharField(pk=True, max_length=80, null=False, unique=True)
+    hash = fields.CharField(max_length=80, null=False)
     destination_address = fields.CharField(max_length=100, null=False)
     wallet = fields.ForeignKeyField(
         model_name="models.Wallet", field_to="address", related_name='wallet_transactions')

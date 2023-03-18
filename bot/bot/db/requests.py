@@ -114,9 +114,11 @@ class DbRequests:
         await self.session.commit()
         return request.first()
 
-    async def check_transaction(self, hash: str):
+    async def check_transaction(self, body_hash: str, tx_hash: str):
         request = await self.session.execute(select(Transactions)
-                                             .where(Transactions.hash == hash))
+                                             .where(Transactions.hash == body_hash,
+                                                    Transactions.tx_hash == tx_hash
+                                                    ))
         result = request.first()
 
         if result:
@@ -133,6 +135,7 @@ class DbRequests:
         return False
 
     async def add_v_transaction(self,
+                                tx_hash: str,
                                 hash: str,
                                 incoming_value: int,
                                 wallet_id: str,
@@ -143,6 +146,7 @@ class DbRequests:
                                 created_time: int
                                 ):
         sql = insert(Transactions).values(
+            tx_hash=tx_hash,
             hash=hash,
             destination_address=destination,
             wallet_id=wallet_id,
