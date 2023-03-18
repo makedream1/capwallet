@@ -44,7 +44,7 @@ async def process_success_captcha(callback: CallbackQuery,
     await db_request.verify_user(callback.from_user.id)
 
     await callback.message.answer_photo(
-            photo='AgACAgIAAxkBAAIEoWPgzyHUCnZIsmAczM3geJC736fgAAIaxzEbmIwBSzv1pwPIRVRDAQADAgADcwADLgQ',  # noqa: E501
+            photo='AgACAgIAAxkBAAMLZBTIKlatIG4GpBcL-2vpJmU51bYAAmzJMRu4J6lIfcoXKcyWcMoBAAMCAANzAAMvBA',  # noqa: E501
             caption='Мультивалютный криптокошелек. Покупайте, продавайте, храните и платите криптовалютой когда хотите.',  # noqa: E501
             reply_markup=main_menu_keyboard())
     await callback.bot.delete_message(
