@@ -83,9 +83,11 @@ async def ton_deposit_watcher(config, session):
                 #     print(f"\t{name}: {balances[name]}")
 
                 if balances['ton'] > 0:
+                    dt = datetime.now()
+                    ts = datetime.timestamp(dt)
 
-                    # '{uid};{amount}'
-                    msg = f'{_wallet[0].user_id};{balances["ton"]}'
+                    # '{uid};{amount};{timestamp}'
+                    msg = f'{_wallet[0].user_id};{balances["ton"]};{ts}'
 
                     encoded_msg = encode(msg)
 
