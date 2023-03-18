@@ -80,7 +80,7 @@ async def withdraw(trans: Withdraw_Pydantic):
     mnemonic = settings.HOT_WALLET_MNEMONICS.split(',')
 
     [mnemonics, pub_key, priv_key,
-        hot_wallet] = ton_client.get_wallet(mnemonic, version='v4r2')
+        hot_wallet] = ton_client.get_wallet(mnemonic, version='v3r2')
 
     if trans_dict['total'] > user_wallet.balance:
         return {'error': 'Not enough money'}
