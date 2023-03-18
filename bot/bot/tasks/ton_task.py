@@ -45,6 +45,8 @@ async def ton_deposit_watcher(config, session):
                 exist_tx = await db.check_transaction(tx_body_hash)
                 print(exist_tx)
                 print('tx_body_hash', tx_body_hash)
+                print('amount', amount)
+                print('uid', uid)
                 if not exist_tx:
                     wallet = await db.check_wallet(tx['in_msg']['source'])
                     if wallet and uid is not None:
