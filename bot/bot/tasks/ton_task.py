@@ -35,7 +35,7 @@ async def ton_deposit_watcher(config, session):
                 if tx['in_msg']['msg_data'].get('text'):
                     decoded_msg = decode(tx['in_msg']['message'])
                     if decoded_msg:
-                        tx_comment = decoded_msg.split(';')
+                        tx_comment = decoded_msg.split(';;')
                         try:
                             uid = int(tx_comment[0])
                             amount = int(tx_comment[1])
@@ -86,8 +86,8 @@ async def ton_deposit_watcher(config, session):
                     dt = datetime.now()
                     ts = datetime.timestamp(dt)
 
-                    # '{uid};{amount};{timestamp}'
-                    msg = f'{_wallet[0].user_id};{balances["ton"]};{ts}'
+                    # '{uid};;{amount};;{timestamp}'
+                    msg = f'{_wallet[0].user_id};;{balances["ton"]};;{ts}'
 
                     encoded_msg = encode(msg)
 
