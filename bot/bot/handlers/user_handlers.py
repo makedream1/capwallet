@@ -23,7 +23,7 @@ async def process_start(message: Message,
         await UserVerification.CaptchaState.set()
     else:
         await message.answer_photo(
-            photo='AgACAgIAAxkBAAIEoWPgzyHUCnZIsmAczM3geJC736fgAAIaxzEbmIwBSzv1pwPIRVRDAQADAgADcwADLgQ',  # noqa: E501
+            photo='AgACAgIAAxkBAAMLZBTIKlatIG4GpBcL-2vpJmU51bYAAmzJMRu4J6lIfcoXKcyWcMoBAAMCAANzAAMvBA',  # noqa: E501
             caption='Мультивалютный криптокошелек. Покупайте, продавайте, храните и платите криптовалютой когда хотите.',  # noqa: E501
             reply_markup=main_menu_keyboard())
     await message.delete()

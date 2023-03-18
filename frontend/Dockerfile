@@ -14,10 +14,8 @@ RUN npm run build
 FROM nginx:alpine
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
-# COPY ./fullchain.pem /etc/ssl/certs/fullchain.pem
-# COPY ./privkey.pem /etc/ssl/certs/privkey.pem
-# COPY ./options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
-# COPY ./ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
+COPY /etc/letsencrypt/live/volreviews.com/fullchain.pem /etc/nginx/certs/fullchain.pem
+COPY /etc/letsencrypt/live/volreviews.com/privkey.pem /etc/nginx/certs/privkey.pem
 
 COPY --from=builder /build /usr/share/nginx/html
 

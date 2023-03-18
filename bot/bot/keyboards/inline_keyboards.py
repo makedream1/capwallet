@@ -21,7 +21,7 @@ def main_menu_keyboard() -> InlineKeyboardMarkup:
     wallet_btn: InlineKeyboardButton = InlineKeyboardButton(
         text='💵 Кошелёк',
         web_app=WebAppInfo(
-            url='https://0.0.0.0/'))
+            url='https://volreviews.com'))
 
     keyboard.add(wallet_btn)
 
