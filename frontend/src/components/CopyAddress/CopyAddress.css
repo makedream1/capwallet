@@ -8,7 +8,7 @@
   border-radius: 18px;
   height: 46px;
   padding: 0 9px;
-  gap: 12px;
+  margin-top: auto;
 }
 
 .copy-text {
@@ -28,7 +28,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 55px;
+  padding: 4px;
   height: 50%;
   color: #fff;
   background-color: #1a73d0;

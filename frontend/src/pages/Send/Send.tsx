@@ -32,7 +32,6 @@ const Send = () => {
     coin: "",
     network: "",
     query_id: query_id,
-
   });
 
   const tokens: IToken[] =
@@ -98,9 +97,29 @@ const Send = () => {
 
   const validateFormData = () => {
     for (const value of Object.values(formData)) {
-      if (!value) return false;
+      if (!value)
+        return (
+          <BigBlueButton
+            type={"button"}
+            onClick={(e: Event) => {
+              e.preventDefault();
+            }}
+            caption={"Отправить"}
+            isDisabled={true}
+          />
+        );
     }
-    return true;
+    return (
+      <BigBlueButton
+        type={"button"}
+        onClick={(e: Event) => {
+          e.preventDefault();
+          setPage((currPage) => currPage + 1);
+        }}
+        caption={"Отправить"}
+        isDisabled={false}
+      />
+    );
   };
 
   const handleSubmit = () => {
@@ -124,17 +143,7 @@ const Send = () => {
       <Header />
       <section className="Send">
         {pageDisplay()}
-        {page === 0 && validateFormData() && (
-          <BigBlueButton
-            type={"button"}
-            onClick={(e: Event) => {
-              e.preventDefault();
-              setPage((currPage) => currPage + 1);
-            }}
-            caption={"Отправить"}
-            isDisabled={false}
-          />
-        )}
+        {page === 0 && validateFormData()}
         {page === 1 && (
           <BigBlueButton
             type={"button"}

@@ -19,7 +19,7 @@ const Token = ({
       <div className="tokenInfo">
         <div className="tokenRate">
           <div className="tokenName">{name}</div>
-          {price && <div className="tokenPrice">{price}$</div>}
+          {price && <div className="tokenPrice">${price}</div>}
         </div>
         <div className="tokenTotal">
           <span className="tokenAmount">{amount}</span>

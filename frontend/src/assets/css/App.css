@@ -19,7 +19,10 @@ body {
 }
 
 .Content {
-  min-height: 50vh;
+  min-height: 80px;
+  height: 50vh;
+  max-height: 46vh;
+
   display: flex;
   flex-direction: column;
   border-radius: 26px 26px 0 0;

@@ -50,9 +50,9 @@ const QRCodeImage = ({
 
   return (
     <div className="qrCode-wrapper">
-      <p className="receive-token-subtitle">
+      {/* <p className="receive-token-subtitle">
         Используйте сеть {network.name} ({network.shortName})
-      </p>
+      </p> */}
 
       <div className="qrCode-title-container">
         <span>Отсканируйте QR-code или используйте адрес ниже</span>

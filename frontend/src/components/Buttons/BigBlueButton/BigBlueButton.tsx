@@ -13,7 +13,13 @@ const BigBlueButton = ({
   onClick: any;
 }) => {
   return (
-    <button type={type} onClick={onClick} disabled={isDisabled} className="BigBlueButton">
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={isDisabled}
+      style={ isDisabled ? { backgroundColor: "#799fc6"} : {}}
+      className="BigBlueButton"
+    >
       <span className="BigBlueButtonCaption">{caption}</span>
     </button>
   );
