@@ -24,8 +24,10 @@ async def process_start(message: Message,
     else:
         await message.answer_photo(
             photo='AgACAgIAAxkBAAMLZBTIKlatIG4GpBcL-2vpJmU51bYAAmzJMRu4J6lIfcoXKcyWcMoBAAMCAANzAAMvBA',  # noqa: E501
-            caption='Мультивалютный криптокошелек. Покупайте, продавайте, храните и платите криптовалютой когда хотите.',  # noqa: E501
-            reply_markup=main_menu_keyboard())
+            caption='<a href="https://t.me/cap_live">Ads To Earn Platform</a>\n\n'  # noqa: E501
+                    '• Зарабатывай $TON получая рекламу\n'
+                    '• Получи тысячи активных пользователей отправив $TON',
+            reply_markup=main_menu_keyboard(), parse_mode='HTML')
     await message.delete()
 
 
