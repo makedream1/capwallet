@@ -11,7 +11,7 @@ COPY src /src/
 RUN npm run build
 
 
-FROM nginx:alpine
+FROM nginx
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/fullchain.pem /etc/nginx/certs/fullchain.pem
