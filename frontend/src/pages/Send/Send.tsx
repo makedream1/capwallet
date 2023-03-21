@@ -140,8 +140,8 @@ const Send = () => {
 
   return (
     <>
-      <Header />
       <section className="Send">
+        <Header />
         {pageDisplay()}
         {page === 0 && validateFormData()}
         {page === 1 && (

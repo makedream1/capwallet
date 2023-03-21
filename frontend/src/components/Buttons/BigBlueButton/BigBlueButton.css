@@ -2,12 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  height: 47px;
   border-radius: 9px;
-  margin-top: auto;
-  margin-bottom: 15px;
   background-color: #1a73d0;
+  text-decoration: none;
+  min-height: 47px;
+  margin-top: auto;
+  max-height: 47px;
+  margin-bottom: 10px;
   text-decoration: none;
   border: none;
 }

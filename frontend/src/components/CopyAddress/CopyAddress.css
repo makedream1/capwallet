@@ -3,12 +3,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
   border: 1px solid #e6e6e6;
   border-radius: 18px;
-  height: 46px;
+  min-height: 47px;
+  max-height: 47px;
   padding: 0 9px;
-  margin-top: auto;
+  gap: 12px;
 }
 
 .copy-text {
@@ -28,7 +28,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 4px;
+  width: 55px;
   height: 50%;
   color: #fff;
   background-color: #1a73d0;

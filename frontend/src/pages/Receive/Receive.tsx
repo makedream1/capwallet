@@ -3,7 +3,6 @@ import { useState } from "react";
 import BigButton from "../../components/Buttons/BIgButtonLink/BigButtonLink";
 import TokenSelectBox from "../../components/TokenSelectBox/TokenSelectBox";
 import CopyAddress from "../../components/CopyAddress/CopyAddress";
-import Header from "../../components/Header/Header";
 import QRCode from "../../components/QRCodeImage/QRCodeImage";
 import useFetch from "../../hooks/useFetch";
 
@@ -61,7 +60,6 @@ const Receive = () => {
 
   return (
     <>
-      <Header />
       <section className="Receive">
         {isLoading || !data ? (
           <div></div>

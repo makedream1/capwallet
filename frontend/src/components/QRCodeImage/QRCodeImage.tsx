@@ -10,11 +10,6 @@ const qrCode = new QRCodeStyling({
   height: 210,
   type: "svg",
   qrOptions: { errorCorrectionLevel: "H" },
-  // imageOptions: {
-  //   hideBackgroundDots: true,
-  //   imageSize: 0.4,
-  //   margin: 2,
-  // },
   dotsOptions: {
     color: "#5eb5ea",
     type: "rounded",
@@ -44,8 +39,12 @@ const QRCodeImage = ({
   useEffect(() => {
     qrCode.update({
       data: token,
-      // image: tokenImg,
     });
+    const svg = document.getElementsByClassName('qrCode-container').item(0)!.firstElementChild;
+    qrCode && svg && (
+     svg.setAttribute('viewBox', "0 0 210 210")
+    );
+
   }, [token]);
 
   return (
@@ -57,9 +56,7 @@ const QRCodeImage = ({
       <div className="qrCode-title-container">
         <span>Отсканируйте QR-code или используйте адрес ниже</span>
       </div>
-      <div className="qrCode-container" onClick={() => copy(token)}>
-        <div ref={ref} />
-      </div>
+      <div className="qrCode-container" onClick={() => copy(token)} ref={ref} />
     </div>
   );
 };
