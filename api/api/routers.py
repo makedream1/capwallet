@@ -91,9 +91,9 @@ async def withdraw(trans: Withdraw_Pydantic):
         msg = f"{from_wallet_address};{trans_dict['total']};{user_id}"
 
         encoded_msg = encode(msg)
-
+        dest = ton_client.non_bounceable_address(trans_dict['destination'])
         await ton_client.send_tons(hot_wallet,
-                                   trans_dict['destination'],
+                                   dest,
                                    trans_dict['amount'],
                                    payload=encoded_msg
                                    )

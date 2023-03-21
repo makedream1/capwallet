@@ -26,6 +26,10 @@ class TON_Provider:
 
         self.client = AsyncClient(headers={'X-API-Key': self.api_key})
 
+    def non_bounceable_address(self, add: str):
+         return Address(add).to_string(1, 1, 0)
+
+
     async def request(self, method, endpoint, *args, **kwargs):
         response = await self.client.request(
             method, f"https://{'testnet.' if self.testnet else ''}toncenter.com/api/v2/{endpoint}", *args, **kwargs   # noqa: E501
