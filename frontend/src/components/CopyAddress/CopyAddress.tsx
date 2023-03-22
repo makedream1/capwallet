@@ -8,7 +8,7 @@ const CopyAddress = ({ token }: { token: string }) => {
   return (
     <div className="CopyAddress">
       <div className="copy-text">
-        <input id="copy-text" type="text" value={token} disabled={true} />
+        <input id="copy-text" type="text" value={token} readOnly={true} />
       </div>
       <div
         className="copy-button"
