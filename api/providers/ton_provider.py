@@ -163,7 +163,7 @@ class TON_Provider:
         return balances
 
     async def send_tons(self, wallet, dest: str, amount: int, payload=None,
-                        send_mode: int = 1):
+                        send_mode: int = 1 + 2):
         seqno = await self.get_seqno(wallet.address.to_string(1, 1, 1))
         query = wallet.create_transfer_message(
             dest, amount, seqno, payload=payload, send_mode=send_mode
