@@ -3,7 +3,7 @@ from aiogram.types import Message, ContentType
 
 
 async def delete_waste_messages(message: Message):
-    print(message)
+    # print(message)
     await message.delete()
 
 

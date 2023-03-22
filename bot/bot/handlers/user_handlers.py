@@ -23,7 +23,7 @@ async def process_start(message: Message,
         await UserVerification.CaptchaState.set()
     else:
         await message.answer_photo(
-            photo='AgACAgIAAxkBAAMLZBTIKlatIG4GpBcL-2vpJmU51bYAAmzJMRu4J6lIfcoXKcyWcMoBAAMCAANzAAMvBA',  # noqa: E501
+            photo='AgACAgIAAxkBAAOnZBsVA1ZXmdFmg_ob5SNPv8dWiU8AAonJMRvXNdlIt42MBjLEiioBAAMCAANzAAMvBA',  # noqa: E501
             caption='• Зарабатывай $TON получая рекламу\n'
                     '• Получи тысячи активных пользователей отправив $TON',
             reply_markup=main_menu_keyboard(), parse_mode='HTML')
