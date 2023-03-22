@@ -12,15 +12,7 @@
 }
 
 .copy-text {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   width: 85%;
-  white-space: nowrap;
 }
 
 .copy-button {
@@ -38,4 +30,16 @@
   line-height: 14px;
   cursor: pointer;
   padding: 7px 5px;
+}
+
+#copy-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  border: none;
 }
