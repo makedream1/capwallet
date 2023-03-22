@@ -1,10 +1,6 @@
-import useCopyToClipboard from "../../hooks/useCopyToClipboard";
-
 import "./CopyAddress.css";
 
 const CopyAddress = ({ token }: { token: string }) => {
-  const [value, copy] = useCopyToClipboard();
-
   return (
     <div className="CopyAddress">
       <div className="copy-text">
@@ -14,15 +10,13 @@ const CopyAddress = ({ token }: { token: string }) => {
         className="copy-button"
         id="copy-button"
         onClick={() => {
-          copy(token).catch(() => {
-            let copyText = document.querySelector("#copy-text");
-            // @ts-ignore
-            copyText.select();
-            document.execCommand("copy");
-          });
-          const x = document.getElementById("copy-button");
-          x!.innerHTML = "скопировано";
-          setTimeout(() => (x!.innerHTML = "копировать"), 1000);
+          const copyText = document.querySelector("#copy-text");
+          // @ts-ignore
+          copyText.select();
+          document.execCommand("copy");
+          const copyBtn = document.getElementById("copy-button");
+          copyBtn!.innerHTML = "скопировано";
+          setTimeout(() => (copyBtn!.innerHTML = "копировать"), 1000);
         }}
       >
         копировать
