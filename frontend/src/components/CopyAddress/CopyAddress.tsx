@@ -18,7 +18,7 @@ const CopyAddress = ({ token }: { token: string }) => {
           const x = document.getElementById("copy-button");
           x!.innerHTML = "скопировано";
           setTimeout(() => (x!.innerHTML = "копировать"), 1000);
-          navigator.clipboard.writeText(token);
+          // navigator.clipboard.writeText(token);
         }}
       >
         копировать
