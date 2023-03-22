@@ -23,7 +23,8 @@ async def ton_deposit_watcher(config, session):
         wallets: list(tuple(Wallet)) = await db.get_all_wallets_by_coin(
             coin_name='TON')
 
-        transactions = await provider.get_transactions_info(HOT_WALLET, limit=5)
+        transactions = await provider.get_transactions_info(HOT_WALLET)
+
         for tx in transactions:
             if not tx['out_msgs']:
                 tx_comment = None
@@ -133,7 +134,8 @@ async def ton_withdraw_watcher(config, session):
                             except Exception:
                                 pass
 
-                    exist_tx = await db.check_transaction(tx_body_hash, tx_hash)
+                    exist_tx = await db.check_transaction(tx_body_hash,
+                                                          tx_hash)
 
                     if not exist_tx and tx_comment is not None:
                         wallet = await db.check_wallet(tx_comment[0])
