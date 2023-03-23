@@ -66,9 +66,9 @@ async def main() -> None:
     await set_main_menu(dp)
 
     try:
-        dp._loop_create_task(ton_deposit_watcher(config, async_session))
-        dp._loop_create_task(ton_withdraw_watcher(config, async_session))
-        dp._loop_create_task(update_prices(config, async_session))
+        asyncio.create_task(ton_deposit_watcher(config, async_session))
+        asyncio.create_task(ton_withdraw_watcher(config, async_session))
+        asyncio.create_task(update_prices(config, async_session))
         await dp.skip_updates()
         await dp.start_polling()
     finally:
@@ -80,6 +80,8 @@ async def main() -> None:
 
 if __name__ == '__main__':
     try:
-        asyncio.run(main())
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(main())
     except (KeyboardInterrupt, SystemExit):
         logger.error('Bot stopped!')
