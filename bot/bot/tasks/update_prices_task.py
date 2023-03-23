@@ -39,4 +39,4 @@ async def update_prices(config, session):
                     })
                 await db.update_prices(params=coins)
 
-        await asyncio.sleep(300)
+        await asyncio.sleep(600)
