@@ -25,18 +25,25 @@ async def update_prices(config, session):
     while True:
         async with ClientSession() as session:
             session.headers.update(headers)
-            async with session.get(url, params=parameters) as response:
-                info = await response.json()
-                data = info['data']
-                coins = []
-                for key in data:
-                    coins.append({
-                        '_symbol': key,
-                        '_name': data[key]['name'],
-                        '_price': round(data[key]['quote']['USD']['price'], 2),
-                        '_img': f'icon_{key}.svg'.lower(),
-                        '_utime': datetime.utcnow()
-                    })
-                await db.update_prices(params=coins)
+            coin = await db.get_coin('TON')
+            now = datetime.utcnow()
+            delta = now - coin.last_updated
 
-        await asyncio.sleep(600)
+            if delta.total_seconds() > 300:
+                async with session.get(url, params=parameters) as response:
+                    info = await response.json()
+                    data = info['data']
+                    coins = []
+                    for key in data:
+                        coins.append({
+                            '_symbol': key,
+                            '_name': data[key]['name'],
+                            '_price': round(
+                                data[key]['quote']['USD']['price'],
+                                2),
+                            '_img': f'icon_{key}.svg'.lower(),
+                            '_utime': datetime.utcnow()
+                        })
+                    await db.update_prices(params=coins)
+
+        await asyncio.sleep(300)
