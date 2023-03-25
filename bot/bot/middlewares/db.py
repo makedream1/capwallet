@@ -14,12 +14,13 @@ class DbMiddleware(LifetimeControllerMiddleware):
         self.session: AsyncSession = session
 
     async def pre_process(self, obj, data, *args):
-        session = self.session()
-        data["session"] = session
-        db_request = DbRequests(session)
+        data["session"] = self.session
+        db_request = DbRequests(self.session)
         data["db_request"] = db_request
         from_user = obj.from_user
-        user = await session.get(User, from_user.id)
+        async with self.session() as session:
+            async with session.begin():
+                user = await session.get(User, from_user.id)
 
         if not user:
             invite_code = obj.text.split()
@@ -35,4 +36,5 @@ class DbMiddleware(LifetimeControllerMiddleware):
     async def post_process(self, obj, data, *args):
         session = data.get("session")
         if session:
-            await session.close()
+            async with session() as session:
+                await session.close()

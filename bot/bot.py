@@ -69,7 +69,7 @@ async def main() -> None:
         asyncio.create_task(ton_deposit_watcher(config, async_session))
         asyncio.create_task(ton_withdraw_watcher(config, async_session))
         asyncio.create_task(update_prices(config, async_session))
-        await dp.skip_updates()
+
         await dp.start_polling()
     finally:
         async with async_session() as session:

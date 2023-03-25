@@ -6,8 +6,7 @@ from providers.ton_provider import TON_Provider
 from utils import encode, decode
 
 
-async def ton_deposit_watcher(config, session):
-    _session = session()
+async def ton_deposit_watcher(config, _session):
     db = DbRequests(_session)
 
     TESTNET = config.ton.TESTNET
@@ -100,8 +99,7 @@ async def ton_deposit_watcher(config, session):
         await asyncio.sleep(10)
 
 
-async def ton_withdraw_watcher(config, session):
-    _session = session()
+async def ton_withdraw_watcher(config, _session):
     db = DbRequests(_session)
 
     TESTNET = config.ton.TESTNET

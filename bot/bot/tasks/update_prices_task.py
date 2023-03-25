@@ -6,8 +6,7 @@ from aiohttp import ClientSession
 from bot.db.requests import DbRequests
 
 
-async def update_prices(config, session):
-    _session = session()
+async def update_prices(config, _session):
     db = DbRequests(_session)
 
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'

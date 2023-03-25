@@ -6,3 +6,5 @@ captcha
 greenlet
 httpx
 tonsdk
+
+nest-asyncio
