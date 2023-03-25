@@ -48,11 +48,11 @@ services:
         - 5435:5432
       env_file:
         - .env
-  restarter:
-    image: docker:cli
-    volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
-    command: ["/bin/sh", "-c", "while true; do sleep 10800; docker compose -p capwallet restart bot; done"]
-    restart: unless-stopped
+  # restarter:
+  #   image: docker:cli
+  #   volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+  #   command: ["/bin/sh", "-c", "while true; do sleep 10800; docker compose -p capwallet restart bot; done"]
+  #   restart: unless-stopped
 
 volumes:
   postgres_data:
