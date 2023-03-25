@@ -1,7 +1,7 @@
 import asyncio
 import logging
 
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from sqlalchemy.engine import URL
@@ -66,11 +66,11 @@ async def main() -> None:
     await set_main_menu(dp)
 
     try:
-        asyncio.create_task(ton_deposit_watcher(config, async_session))
-        asyncio.create_task(ton_withdraw_watcher(config, async_session))
-        asyncio.create_task(update_prices(config, async_session))
+        asyncio.gather(ton_deposit_watcher(config, async_session),
+                       ton_withdraw_watcher(config, async_session),
+                       update_prices(config, async_session))
 
-        await dp.start_polling()
+        executor.start_polling(dp)
     finally:
         async with async_session() as session:
             await session.close()
@@ -80,8 +80,6 @@ async def main() -> None:
 
 if __name__ == '__main__':
     try:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        loop.run_until_complete(main())
+        asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
         logger.error('Bot stopped!')
