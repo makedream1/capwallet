@@ -13,17 +13,22 @@ import { fetchDataApi } from "../api/data";
 const { tg, user } = useTelegram();
 
 function App() {
+  const userId = user?.id ? user.id : "131371085";
+
   const [data, setData] = useState<{
-    status: string;
-    data: {};
-    error?: string;
-  }>({ status: "", data: {} });
+    wallets: any[];
+    id: string;
+    total_balance: number;
+  }>({
+    wallets: [],
+    id: "",
+    total_balance: 0,
+  });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchDataApi(user.id);
-      // @ts-ignore
-      setData(response);
+    const fetchData = () => {
+      const response = fetchDataApi(userId);
+      response.then((response) => setData(response.data));
     };
     tg.ready();
     tg.expand();

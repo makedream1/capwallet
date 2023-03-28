@@ -3,7 +3,7 @@ export interface IToken {
   id: string;
   name: string;
   img: string;
-  price: number;
+  price?: number;
   shortName: string;
   amount: number;
   address: string;
@@ -29,4 +29,10 @@ export interface ITokenSelectBox {
   tokens: IToken[];
   isDisabled: boolean;
   isRequired: boolean;
+}
+
+export interface IFetchData {
+  wallets: any[any];
+  id: string;
+  total_balance: number
 }

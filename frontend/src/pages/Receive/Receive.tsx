@@ -5,17 +5,12 @@ import TokenSelectBox from "../../components/TokenSelectBox/TokenSelectBox";
 import CopyAddress from "../../components/CopyAddress/CopyAddress";
 import QRCode from "../../components/QRCodeImage/QRCodeImage";
 
-import { IToken } from "../../types/types";
+import { IFetchData, IToken } from "../../types/types";
 
 import "./Receive.css";
+import { Navigate } from "react-router-dom";
 
-
-const Receive = ({
-  data,
-}: {
-  data: { status: string; data: {}; error?: string };
-}) => {
-
+const Receive = ({ data }: { data: IFetchData }) => {
   const [tokenId, setSelectedTokenId] = useState<string>();
   const [tokenAddress, setSelectedTokenAddress] = useState<string>("");
   const [tokenImg, setSelectedTokenImg] = useState<string>("");
@@ -23,21 +18,24 @@ const Receive = ({
     name: string;
     shortName: string;
   }>({ name: "", shortName: "" });
+  if (!data["wallets"]) {
+    return <Navigate replace to="/" />;
+  }
 
-  // @ts-ignore
   const tokens: IToken[] =
     data &&
-    // @ts-ignore
-    data.data["wallets"].map((wallet: any) => {
+    data["wallets"].map((wallet: any) => {
       return {
         id: wallet.address,
         amount: wallet.balance,
+        min_withdraw_limit: wallet.min_withdraw_limit,
         name: wallet.coin.name,
         shortName: wallet.coin.short_name,
         img: wallet.coin.get_image,
         address: wallet.address,
         networkName: wallet.network.name,
         networkShortName: wallet.network.short_name,
+        gas_fee: wallet.withdrawal_fee,
       };
     });
 

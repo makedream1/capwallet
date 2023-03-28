@@ -1,27 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-import { IFormData, IToken } from "../../types/types";
+import { IFormData, IToken, IFetchData } from "../../types/types";
 import { useTelegram } from "../../hooks/useTelegram";
 import Header from "../../components/Header/Header";
 import SendTokenForm from "../../components/SendTokenForm/SendTokenForm";
 import BigBlueButton from "../../components/Buttons/BigBlueButton/BigBlueButton";
 
-import {BASE_URL} from '../../api/data'
+import { BASE_URL } from "../../api/data";
 
 import "./Send.css";
 
 const { tg } = useTelegram();
 
-const Send = ({
-  data,
-}: {
-  data: { status: string; data: {}; error?: string };
-}) => {
+const Send = ({ data }: { data: IFetchData }) => {
   const navigate = useNavigate();
   const initData = tg.initData.split("&");
   const query_id = initData[0].split("=")[1];
 
+  if (!data["wallets"]) {
+    return <Navigate replace to="/" />;
+  }
   const [formData, setFormData] = useState<IFormData>({
     user_id: "",
     source: "",
@@ -32,13 +31,12 @@ const Send = ({
     network: "",
     query_id: query_id + "ds",
   });
-  // @ts-ignore
-  const userId = data && data.data["id"];
-  // @ts-ignore
+
+  const userId = data && data!["id"];
+
   const tokens: IToken[] =
     data &&
-    // @ts-ignore
-    data.data["wallets"].map((wallet: any) => {
+    data["wallets"].map((wallet: any) => {
       return {
         id: wallet.address,
         amount: wallet.balance,
