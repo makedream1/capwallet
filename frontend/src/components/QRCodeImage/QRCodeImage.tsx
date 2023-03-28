@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import "./QRCodeImage.css";
 
 import QRCodeStyling from "qr-code-styling";
-import useCopyToClipboard from "../../hooks/useCopyToClipboard";
 
 const qrCode = new QRCodeStyling({
   width: 210,
@@ -21,15 +20,12 @@ const qrCode = new QRCodeStyling({
 });
 
 const QRCodeImage = ({
-  token,
-  // tokenImg,
-  network
+  token
 }: {
   token: string;
   tokenImg: string;
   network: {name:string, shortName: string};
 }) => {
-  const [value, copy] = useCopyToClipboard();
   const ref = useRef(null);
 
   useEffect(() => {
@@ -49,14 +45,10 @@ const QRCodeImage = ({
 
   return (
     <div className="qrCode-wrapper">
-      {/* <p className="receive-token-subtitle">
-        Используйте сеть {network.name} ({network.shortName})
-      </p> */}
-
       <div className="qrCode-title-container">
         <span>Отсканируйте QR-code или используйте адрес ниже</span>
       </div>
-      <div className="qrCode-container" onClick={() => copy(token)} ref={ref} />
+      <div className="qrCode-container" ref={ref} />
     </div>
   );
 };

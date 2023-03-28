@@ -1,9 +1,6 @@
 import "./TokenList.css";
 
 import Token from "../Token/Token";
-import useFetch from "../../hooks/useFetch";
-
-import { URL } from "../../helpers/consts";
 interface IToken {
   id: string;
   name: string;
@@ -13,13 +10,10 @@ interface IToken {
   amount: number;
 }
 
-const TokenList = ({ userId }: { userId: string }) => {
-  const url = userId && `${URL}/users/${userId}`;
-  const [data, isLoading, error] = useFetch(url);
-
+const TokenList = ({ wallets }: { wallets: any[] }) => {
   const tokens =
-    data &&
-    data.data["wallets"].map((wallet: any) => {
+    wallets &&
+    wallets.map((wallet: any) => {
       return {
         id: wallet.address,
         amount: wallet.wallet_balance,
@@ -33,7 +27,7 @@ const TokenList = ({ userId }: { userId: string }) => {
   return (
     <div className="Content">
       <h3 className="tokenListTitle">Токены</h3>
-      {isLoading || !data ? (
+      {!wallets ? (
         <div></div>
       ) : (
         <ul className="Tokens">

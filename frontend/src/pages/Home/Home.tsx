@@ -6,25 +6,20 @@ import receiveImg from "./../../assets/images/icon_receive.svg";
 import sendImg from "./../../assets/images/icon_send.svg";
 
 import "./Home.css";
-import useFetch from "../../hooks/useFetch";
-import { useTelegram } from "../../hooks/useTelegram";
-import { URL } from "../../helpers/consts";
 
-const { user } = useTelegram();
-
-const Home = () => {
-  const userId = user.id;
-
-  const url = `${URL}/users/${userId}`;
-
-  const [data, isLoading, error] = useFetch(url);
+const Home = ({
+  data,
+}: {
+  data: { status: string; data: {}; error?: string };
+}) => {
 
   return (
     <section className="Home">
       <div className="wrapper-balance-buttons">
-        {isLoading || !data ? (
+        {!data ? (
           <div></div>
         ) : (
+          // @ts-ignore
           <TotalBalance totalBalance={data && data.data["total_balance"]} />
         )}
 
@@ -37,7 +32,10 @@ const Home = () => {
           <CircleButtonLink link="send" img={sendImg} caption="Отправить" />
         </div>
       </div>
-      <TokenList userId={userId} />
+      {
+        // @ts-ignore
+        <TokenList wallets={data && data.data["wallets"]} />
+      }
     </section>
   );
 };

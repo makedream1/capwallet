@@ -6,22 +6,21 @@ import { useTelegram } from "../../hooks/useTelegram";
 import Header from "../../components/Header/Header";
 import SendTokenForm from "../../components/SendTokenForm/SendTokenForm";
 import BigBlueButton from "../../components/Buttons/BigBlueButton/BigBlueButton";
-import useFetch from "../../hooks/useFetch";
-import { URL } from "../../helpers/consts";
+
+import {BASE_URL} from '../../api/data'
 
 import "./Send.css";
 
-const { tg, user } = useTelegram();
+const { tg } = useTelegram();
 
-const Send = () => {
+const Send = ({
+  data,
+}: {
+  data: { status: string; data: {}; error?: string };
+}) => {
   const navigate = useNavigate();
-  const userId = user.id;
-
   const initData = tg.initData.split("&");
   const query_id = initData[0].split("=")[1];
-
-  const url = `${URL}/users/${userId}/wallets`;
-  const [data, isLoading, error] = useFetch(url);
 
   const [formData, setFormData] = useState<IFormData>({
     user_id: "",
@@ -31,12 +30,15 @@ const Send = () => {
     destination: "",
     coin: "",
     network: "",
-    query_id: query_id,
+    query_id: query_id + "ds",
   });
-
+  // @ts-ignore
+  const userId = data && data.data["id"];
+  // @ts-ignore
   const tokens: IToken[] =
     data &&
-    data.data.map((wallet: any) => {
+    // @ts-ignore
+    data.data["wallets"].map((wallet: any) => {
       return {
         id: wallet.address,
         amount: wallet.balance,
@@ -123,7 +125,7 @@ const Send = () => {
   };
 
   const handleSubmit = () => {
-    fetch(`${URL}/withdraw`, {
+    fetch(`${BASE_URL}/withdraw`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
