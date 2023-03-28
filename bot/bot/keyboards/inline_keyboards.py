@@ -19,9 +19,9 @@ def main_menu_keyboard() -> InlineKeyboardMarkup:
     keyboard: InlineKeyboardMarkup = InlineKeyboardMarkup(row_width=2)
 
     wallet_btn: InlineKeyboardButton = InlineKeyboardButton(
-        text='💵 Wallet',
+        text='💵 Кошелёк',
         web_app=WebAppInfo(
-            url='https://glowing-halva-16459c.netlify.app'))
+            url='https://volreviews.com'))
     web_portal_btn: InlineKeyboardButton = InlineKeyboardButton(
         text='Cap.Live',
         web_app=WebAppInfo(
