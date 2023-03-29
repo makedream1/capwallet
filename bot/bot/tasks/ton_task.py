@@ -2,11 +2,12 @@ import asyncio
 from datetime import datetime
 
 from bot.db.requests import DbRequests, Wallet
+from bot.keyboards.inline_keyboards import delete_message_keyboard
 from providers.ton_provider import TON_Provider
 from utils import encode, decode
 
 
-async def ton_deposit_watcher(config, _session):
+async def ton_deposit_watcher(config, _session, dispatcher):
     db = DbRequests(_session)
 
     TESTNET = config.ton.TESTNET
@@ -58,6 +59,12 @@ async def ton_deposit_watcher(config, _session):
                             created_time=tx_time
                         )
                         if add_tx:
+                            floatAmount = amount / 1_000_000_000
+
+                            await dispatcher.bot.send_message(
+                                wallet[0].user_id,
+                                text=f'Bы получили: {floatAmount} TON',
+                                reply_markup=delete_message_keyboard())
                             await db.update_balance(
                                 tx['in_msg']['source'],
                                 amount,
@@ -99,7 +106,7 @@ async def ton_deposit_watcher(config, _session):
         await asyncio.sleep(10)
 
 
-async def ton_withdraw_watcher(config, _session):
+async def ton_withdraw_watcher(config, _session, dispatcher):
     db = DbRequests(_session)
 
     TESTNET = config.ton.TESTNET
@@ -141,6 +148,7 @@ async def ton_withdraw_watcher(config, _session):
                         if wallet:
                             val = int(out_msg['value'])
                             tx_time = datetime.fromtimestamp(tx['utime'])
+                            destination = out_msg['destination']
                             await db.add_v_transaction(
                                 tx_hash=tx_hash,
                                 hash=tx_body_hash,
@@ -152,6 +160,14 @@ async def ton_withdraw_watcher(config, _session):
                                 created_time=tx_time,
                                 destination=out_msg['destination']
                             )
+
+                            floatAmount = amount / 1_000_000_000
+
+                            await dispatcher.bot.send_message(
+                                wallet[0].user_id,
+                                text=f'Bы отправили: {floatAmount} TON \n'
+                                f'Адрес получателя: {destination}',
+                                reply_markup=delete_message_keyboard())
                     else:
                         continue
 

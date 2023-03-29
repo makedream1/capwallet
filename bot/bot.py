@@ -66,8 +66,8 @@ async def main() -> None:
     await set_main_menu(dp)
 
     try:
-        asyncio.gather(ton_deposit_watcher(config, async_session),
-                       ton_withdraw_watcher(config, async_session),
+        asyncio.gather(ton_deposit_watcher(config, async_session, dp),
+                       ton_withdraw_watcher(config, async_session, dp),
                        update_prices(config, async_session))
 
         executor.start_polling(dp)

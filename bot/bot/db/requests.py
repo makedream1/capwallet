@@ -155,7 +155,7 @@ class DbRequests:
             result = request.first()
 
         if result:
-            return True
+            return result
         return False
 
     async def add_v_transaction(self,

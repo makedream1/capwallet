@@ -30,3 +30,15 @@ def main_menu_keyboard() -> InlineKeyboardMarkup:
     keyboard.add(wallet_btn, web_portal_btn)
 
     return keyboard
+
+
+def delete_message_keyboard() -> InlineKeyboardMarkup:
+    keyboard: InlineKeyboardMarkup = InlineKeyboardMarkup(row_width=1)
+
+    delete_btn = InlineKeyboardButton(
+        "Отлично",
+        callback_data="delete_message")
+
+    keyboard.add(delete_btn)
+
+    return keyboard
